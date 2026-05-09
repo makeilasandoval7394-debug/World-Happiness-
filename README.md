@@ -23,19 +23,6 @@ WORLD HAPPINESS REPORT 2020 ANALYSIS 🤍
 =========================================
 Objectives Analyze global happiness scores Identify relationships between happiness and economic/social indicators Compare high- and low-happiness countries Visualize trends using ggplot2
 
-library(tidyverse)
-## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.2.1     ✔ readr     2.2.0
-## ✔ forcats   1.0.1     ✔ stringr   1.6.0
-## ✔ ggplot2   4.0.3     ✔ tibble    3.3.1
-## ✔ lubridate 1.9.5     ✔ tidyr     1.3.2
-## ✔ purrr     1.2.2     
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
-## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-library(dplyr)
-happiness <- read.csv("2020.csv")
 head(happiness)
 ##   Country.name Happiness.Rank Happiness.score Upperwhisker Lowerwhisker
 ## 1      Finland              1            7.81         7.87         7.75
@@ -60,20 +47,6 @@ head(happiness)
 ## 6                         0.61       0.34                      0.37
 library(dplyr)
 
-happiness <- happiness %>%
-  rename(
-    country = Country.name,
-    rank = Happiness.Rank,
-    score = Happiness.score,
-    upper_whisker = Upperwhisker,
-    lower_whisker = Lowerwhisker,
-    gdp_per_capita = Economy..GDP.per.Capita..,
-    social_support = Social.support,
-    life_expectancy = Healthy.life.expectancy,
-    freedom = Freedom.to.make.life.choices,
-    generosity = Generosity,
-    corruption = Perceptions.of.corruption,
-  )
 =========================================
 DATA CLEANING 🤍
 =========================================
@@ -281,7 +254,6 @@ This suggests that higher GDP per capita is strongly associated with higher happ
 =========================================
 VISUALIZATIONS 🤍
 =========================================
-library(tidyr)
 
 happiness_long <- happiness %>%
   select(score,
